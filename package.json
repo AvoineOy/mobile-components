@@ -1,0 +1,15 @@
+{
+  "name": "@avoine/mobile-components",
+  "version": "0.1.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Niklas Lampén",
+  "license": "MIT",
+  "dependencies": {
+    "@avoine/sso-client": "^0.1.0"
+  }
+}
