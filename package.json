@@ -1,13 +1,26 @@
 {
   "name": "@avoine/mobile-components",
-  "version": "0.1.1",
-  "description": "",
+  "version": "0.1.2",
+  "description": "Collection of React Native components",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Niklas Lampén",
+  "author": {
+    "name": "Niklas Lampén",
+    "email": "niklas.lampen@avoine.fi"
+  },
+  "contributors": [
+    {
+      "name": "Joonas Oksanen",
+      "email": "joonas.oksanen@avoine.fi"
+    }
+  ],
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/AvoineOy/mobile-components.git"
+  },
   "license": "MIT",
   "dependencies": {
     "@avoine/sso-client": "^0.1.0"

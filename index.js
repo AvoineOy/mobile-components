@@ -1,5 +1,5 @@
 import defaultStyles from './styles'
 import Login from './Login';
-import News from './News';
+import NewsList from './NewsList';
 
-export { Login, News, defaultStyles }
+export { Login, NewsList, defaultStyles }
