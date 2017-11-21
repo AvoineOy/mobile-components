@@ -1,0 +1,24 @@
+{
+  "plugins": [],
+  "presets": [
+    [
+      "latest",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-0"
+  ],
+  "env": {
+    "start": {
+      "presets": [
+        "react-hmre"
+      ]
+    },
+    "test": {
+      "compact": false,
+      "presets": ["latest", "react", "stage-0"]
+    }
+  }
+}
