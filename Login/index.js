@@ -18,8 +18,7 @@ import defaultStyle from '../styles'
  * 
  * Required properties:
  * onLogin: callback on succesfull login,
- * ssoUrl: Url to SSO service (e.g. 'https://example.com'),
- * ssoInstance: SSO instance name (e.g. 'my_instance')
+ * config: { Login: { url: Url to SSO service (e.g. 'https://example.com'),instance: SSO instance name (e.g. 'my_instance') } } 
  * 
  * Optional properties:
  * style: Style object
@@ -47,8 +46,8 @@ class Login extends React.Component {
       showUseCode: false,
     };
 
-    this.ssoUrl = props.ssoUrl;
-    this.ssoInstance = props.ssoInstance;
+    this.ssoUrl = props.config.Login.url || undefined;
+    this.ssoInstance = props.config.Login.instace || undefined;
 
     //this.render = this.render.bind(this);
     this.requestCode = this.requestCode.bind(this);
@@ -202,8 +201,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   onLogin: PropTypes.func,
-  ssoUrl: PropTypes.string,
-  ssoInstance: PropTypes.string,
+  config: PropTypes.object,
   style: PropTypes.object
 }
 
