@@ -90,14 +90,14 @@ let defaultStyles = {
         textAlign: 'center',
         backgroundColor: 'gray'
       },
-      ingress: {
+      title: {
         paddingTop: 10,
         paddingLeft: 20,
         paddingRight: 20,
         fontWeight: 'bold',
         backgroundColor: 'white'
       },
-      summary: {
+      ingress: {
         paddingTop: 10,
         paddingLeft: 20,
         paddingRight: 20,
@@ -123,6 +123,11 @@ let defaultStyles = {
         width: null,
         height: null,
         maxWidth: 500
+      },
+      imageMissingText: {
+        padding: 30,
+        textAlign: 'center',
+        backgroundColor: 'gray'
       },
       title: {
         paddingTop: 10,

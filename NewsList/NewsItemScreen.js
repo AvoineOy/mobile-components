@@ -90,16 +90,16 @@ NewsItemScreen.propTypes = {
         style: PropTypes.shape({
           NewsList: PropTypes.shape({
             NewsItemScreen: PropTypes.shape({
-              view: PropTypes.object,
-              imageContainer: PropTypes.object,
-              image: PropTypes.object,
-              imageMissingText: PropTypes.object,
-              ingress: PropTypes.object,
-              summary: PropTypes.object,
-              body: PropTypes.object,
-            })
+              view: PropTypes.object.isRequired,
+              imageContainer: PropTypes.object.isRequired,
+              image: PropTypes.object.isRequired,
+              imageMissingText: PropTypes.object.isRequired,
+              title: PropTypes.object.isRequired,
+              ingress: PropTypes.object.isRequired,
+              body: PropTypes.object.isRequired,
+            }).isRequired
           })
-        })
+        }).isRequired,
       })
     })
   })

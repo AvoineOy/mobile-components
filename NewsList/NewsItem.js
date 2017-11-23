@@ -34,8 +34,8 @@ export default class NewsItem extends React.Component {
                 <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
               </View>
           }
-          <Text style={style.NewsList.NewsItem.ingress}>{newsItem.title}</Text>
-          <Text style={style.NewsList.NewsItem.summary}>{newsItem.summary}</Text>
+          <Text style={style.NewsList.NewsItem.title}>{newsItem.title}</Text>
+          <Text style={style.NewsList.NewsItem.ingress}>{newsItem.summary}</Text>
         </View>
       </TouchableHighlight>
     )

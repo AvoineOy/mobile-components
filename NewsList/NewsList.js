@@ -31,23 +31,23 @@ NewsList.propTypes = {
   style: PropTypes.shape({
     NewsList: PropTypes.shape({
       NewsItem: PropTypes.shape({
-        view: PropTypes.object,
-        imageContainer: PropTypes.object,
-        image: PropTypes.object,
-        imageMissingText: PropTypes.object,
-        ingress: PropTypes.object,
-        summary: PropTypes.object,
-      }),
+        view: PropTypes.object.isRequired,
+        imageContainer: PropTypes.object.isRequired,
+        image: PropTypes.object.isRequired,
+        imageMissingText: PropTypes.object.isRequired,
+        title: PropTypes.object.isRequired,
+        ingress: PropTypes.object.isRequired,
+      }).isRequired,
       NewsItemScreen: PropTypes.shape({
-        view: PropTypes.object,
-        imageContainer: PropTypes.object,
-        image: PropTypes.object,
-        imageMissingText: PropTypes.object,
-        ingress: PropTypes.object,
-        summary: PropTypes.object,
-        body: PropTypes.object,
-      })
+        view: PropTypes.object.isRequired,
+        imageContainer: PropTypes.object.isRequired,
+        image: PropTypes.object.isRequired,
+        imageMissingText: PropTypes.object.isRequired,
+        title: PropTypes.object.isRequired,
+        ingress: PropTypes.object.isRequired,
+        body: PropTypes.object.isRequired,
+      }).isRequired
     })
-  }),
-  navigation: PropTypes.object
+  }).isRequired,
+  navigation: PropTypes.object.isRequired
 }
