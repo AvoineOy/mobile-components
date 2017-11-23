@@ -7,24 +7,24 @@ export default class NewsItem extends React.Component {
     super(props);
   }
 
-  openNewsItem(newsItem) {
+  openNewsItem(item) {
     this.props.navigation.navigate('NewsItem', {
-      newsItem: newsItem,
+      item: item,
       style: this.props.style
     })
   }
 
   render() {
-    const { newsItem, style } = this.props;
+    const { item, style } = this.props;
 
     return (
-      <TouchableHighlight onPress={() => this.openNewsItem(newsItem)}>
+      <TouchableHighlight onPress={() => this.openNewsItem(item)}>
         <View style={style.NewsList.NewsItem.view}>
           {
-            newsItem.image ?
+            item.thumbnail ?
               <View style={style.NewsList.NewsItem.imageContainer}>
                 <Image
-                  source={{uri: newsItem.image}}
+                  source={{uri: item.thumbnail}}
                   style={style.NewsList.NewsItem.image}
                   resizeMode="cover"
                 />
@@ -34,8 +34,8 @@ export default class NewsItem extends React.Component {
                 <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
               </View>
           }
-          <Text style={style.NewsList.NewsItem.title}>{newsItem.title}</Text>
-          <Text style={style.NewsList.NewsItem.ingress}>{newsItem.summary}</Text>
+          <Text style={style.NewsList.NewsItem.title}>{item.title}</Text>
+          <Text style={style.NewsList.NewsItem.ingress}>{item.summary}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -43,7 +43,7 @@ export default class NewsItem extends React.Component {
 }
 
 NewsItem.propTypes = {
-  newsItem: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired,
   style: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired
 }

@@ -87,7 +87,23 @@ NewsItemScreen.propTypes = {
 
 #### Usage
 
-`import { defaultStyles, NewsList } from '@avoine/mobile-components'`
+```
+import { defaultStyles, NewsList } from '@avoine/mobile-components'
+
+...
+render() {
+  return (
+    <NewsList
+      items={myItems}
+      style={styles}
+      navigation{navigation}
+      map={{id: 'news_item_id', date: 'created_date'}}
+    />
+  )
+}
+...
+
+```
 
 #### PropTypes for NewsList
 
@@ -115,6 +131,7 @@ NewsList.propTypes = {
       }).isRequired
     })
   }).isRequired,
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
+  map: PropTypes.object
 }
 ```

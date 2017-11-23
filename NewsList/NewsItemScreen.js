@@ -15,9 +15,9 @@ class NewsItemScreen extends React.Component {
     super(props);
 
     const { state } = this.props.navigation;
-    const { newsItem, style } = state.params;
+    const { item, style } = state.params;
 
-    this.newsItem = newsItem;
+    this.item = item;
     this.style = style;
 
     this.state = {
@@ -28,7 +28,7 @@ class NewsItemScreen extends React.Component {
   }
 
   componentDidMount() {
-    Image.getSize(this.newsItem.image, (width, height) => {
+    Image.getSize(this.item.image, (width, height) => {
       // calculate image width and height 
       const screenWidth = Dimensions.get('window').width
       const scaleFactor = width / screenWidth
@@ -41,16 +41,16 @@ class NewsItemScreen extends React.Component {
 
   render() {
     
-    const { newsItem, style } = this;
+    const { item, style } = this;
 
     return (
       <ScrollView style={{flex: 1}}>
         <View style={style.NewsList.NewsItemScreen.view}>
           {
-            newsItem.image ?
+            item.image ?
               <View style={style.NewsList.NewsItemScreen.imageContainer}>
                 <Image
-                  source={{uri: newsItem.image}}
+                  source={{uri: item.image}}
                   style={Object.assign({}, style.NewsList.NewsItemScreen.image, 
                     {
                       width: this.state.imgWidth,
@@ -65,15 +65,15 @@ class NewsItemScreen extends React.Component {
                 <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
               </View>
           }
-          <Text style={style.NewsList.NewsItemScreen.title}>{newsItem.title}</Text>
-          <Text style={style.NewsList.NewsItemScreen.ingress}>{newsItem.summary}</Text>
+          <Text style={style.NewsList.NewsItemScreen.title}>{item.title}</Text>
+          <Text style={style.NewsList.NewsItemScreen.ingress}>{item.summary}</Text>
           <WebView
             style={Object.assign({}, style.NewsList.NewsItemScreen.body, {
               height: 2000
             })}
             scrollEnabled={false}
             source={{
-              html: newsItem.body
+              html: item.body
             }}
           />
         </View>
@@ -86,7 +86,7 @@ NewsItemScreen.propTypes = {
   navigation: PropTypes.shape({
     state: PropTypes.shape({
       params: PropTypes.shape({
-        newsItem: PropTypes.object.isRequired,
+        item: PropTypes.object.isRequired,
         style: PropTypes.shape({
           NewsList: PropTypes.shape({
             NewsItemScreen: PropTypes.shape({
