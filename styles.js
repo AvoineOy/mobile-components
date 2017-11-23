@@ -63,23 +63,8 @@ let defaultStyles = {
 
   NewsList: {
     view: {
-      paddingTop: 20,
-      backgroundColor: "#0fa"
-    },
-
-    image: {
-      flex: 1,
-      width: null,
-      height: null,
-      maxWidth: 500,
-      backgroundColor: 'lightgray',
-      paddingBottom: 2
-    },
-
-    imageMissingText: {
-      padding: 30,
-      textAlign: 'center',
-      backgroundColor: 'gray'
+      paddingTop: 0,
+      backgroundColor: "transparent"
     },
 
     NewsItem: {
@@ -99,6 +84,11 @@ let defaultStyles = {
         width: null,
         height: null,
         maxWidth: 500
+      },
+      imageMissingText: {
+        padding: 30,
+        textAlign: 'center',
+        backgroundColor: 'gray'
       },
       ingress: {
         paddingTop: 10,

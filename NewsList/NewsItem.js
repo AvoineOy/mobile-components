@@ -30,7 +30,7 @@ export default class NewsItem extends React.Component {
                 />
               </View>
               :
-              <View style={style.NewsList.imageMissingText}>
+              <View style={style.NewsList.NewsItem.imageMissingText}>
                 <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
               </View>
           }

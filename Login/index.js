@@ -201,7 +201,12 @@ class Login extends React.Component {
 
 Login.propTypes = {
   onLogin: PropTypes.func,
-  config: PropTypes.object,
+  config: PropTypes.shape({
+    Login: PropTypes.shape({
+      url: PropTypes.string,
+      instance: PropTypes.string
+    })
+  }),
   style: PropTypes.object
 }
 

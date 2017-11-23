@@ -14,9 +14,9 @@ export default class NewsList extends React.Component {
 
     return (
       <View style={style.NewsList.view}>
-        {newsItems.map((newsItem, index) =>
+        {newsItems.map((newsItem) =>
           <NewsItem
-            key={index}
+            key={newsItem.id}
             newsItem={newsItem}
             style={style}
             navigation={navigation}
@@ -28,6 +28,26 @@ export default class NewsList extends React.Component {
 
 NewsList.propTypes = {
   newsItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-  style: PropTypes.object.isRequired,
+  style: PropTypes.shape({
+    NewsList: PropTypes.shape({
+      NewsItem: PropTypes.shape({
+        view: PropTypes.object,
+        imageContainer: PropTypes.object,
+        image: PropTypes.object,
+        imageMissingText: PropTypes.object,
+        ingress: PropTypes.object,
+        summary: PropTypes.object,
+      }),
+      NewsItemScreen: PropTypes.shape({
+        view: PropTypes.object,
+        imageContainer: PropTypes.object,
+        image: PropTypes.object,
+        imageMissingText: PropTypes.object,
+        ingress: PropTypes.object,
+        summary: PropTypes.object,
+        body: PropTypes.object,
+      })
+    })
+  }),
   navigation: PropTypes.object
 }

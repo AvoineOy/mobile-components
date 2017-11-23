@@ -61,7 +61,7 @@ class NewsItemScreen extends React.Component {
                 />
               </View>
               :
-              <View style={style.NewsList.imageMissingText}>
+              <View style={style.NewsList.NewsItemScreen.imageMissingText}>
                 <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
               </View>
           }
@@ -87,7 +87,19 @@ NewsItemScreen.propTypes = {
     state: PropTypes.shape({
       params: PropTypes.shape({
         newsItem: PropTypes.object.isRequired,
-        style: PropTypes.object.isRequired
+        style: PropTypes.shape({
+          NewsList: PropTypes.shape({
+            NewsItemScreen: PropTypes.shape({
+              view: PropTypes.object,
+              imageContainer: PropTypes.object,
+              image: PropTypes.object,
+              imageMissingText: PropTypes.object,
+              ingress: PropTypes.object,
+              summary: PropTypes.object,
+              body: PropTypes.object,
+            })
+          })
+        })
       })
     })
   })
