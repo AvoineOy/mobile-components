@@ -4,7 +4,16 @@
   "description": "Collection of React Native components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "!node_modules/react-runtime"
+    ]
   },
   "keywords": [],
   "author": {
@@ -17,7 +26,7 @@
       "email": "joonas.oksanen@avoine.fi"
     }
   ],
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "https://github.com/AvoineOy/mobile-components.git"
   },
@@ -38,7 +47,6 @@
     "jest": "^21.2.1",
     "react": "^16.1.1",
     "react-native": "^0.50.3",
-    "react-native-scripts": "1.7.0",
-    "react-test-renderer": "^16.1.1"
+    "react-native-scripts": "1.7.0"
   }
 }
