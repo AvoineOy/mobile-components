@@ -19,6 +19,7 @@ Then use with
 ## Available modules
 
   - Login
+  - NewsItemScreen
   - NewsList
 
 ---
@@ -61,7 +62,7 @@ NewsItemScreen.propTypes = {
   navigation: PropTypes.shape({
     state: PropTypes.shape({
       params: PropTypes.shape({
-        newsItem: PropTypes.object.isRequired,
+        item: PropTypes.object.isRequired,
         style: PropTypes.shape({
           NewsList: PropTypes.shape({
             NewsItemScreen: PropTypes.shape({
@@ -109,7 +110,7 @@ render() {
 
 ```
 NewsList.propTypes = {
-  newsItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
   style: PropTypes.shape({
     NewsList: PropTypes.shape({
       NewsItem: PropTypes.shape({
