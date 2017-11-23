@@ -1,10 +1,9 @@
-import React from 'react'
-import { Text } from 'react-native'
+import NewsList from './NewsList'
+import NewsItem from './NewsItem'
+import NewsItemScreen from './NewsItemScreen'
 
-export default class NewsScreen extends React.Component {
-  render() {
-    return (
-      <Text>Olen uutinen</Text>
-    );
-  }
+export {
+  NewsList,
+  NewsItem,
+  NewsItemScreen
 }

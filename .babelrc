@@ -1,0 +1,30 @@
+{
+  "plugins": [],
+  "presets": [
+    [
+      "latest",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-4"
+  ],
+  "env": {
+    "start": {
+      "presets": [
+        "react-hmre"
+      ]
+    },
+    "test": {
+      "compact": false,
+      "presets": ["latest", "react", "stage-0"]
+    }
+  },
+  "development": {
+    "plugins": [
+      "transform-react-jsx-source",
+      "transform-object-rest-spread"
+    ]
+  }
+}

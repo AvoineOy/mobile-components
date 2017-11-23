@@ -1,0 +1,51 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017, // Allow async/await
+      "ecmaFeatures": {
+        "classes": true,
+        "jsx": true,
+        "spread": true, // Allow spread syntax ( { ...object } )
+        "experimentalObjectRestSpread": true // Allow spread syntax ( { ...object } )
+      },
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "react-native"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-native/all"
+    ],
+    "rules": {
+      "no-console": "off",
+      "no-const-assign": "warn",
+      "no-this-before-super": "warn",
+      "no-undef": "warn",
+      "no-unreachable": "warn",
+      "no-unused-vars": "off",
+      "constructor-super": "warn",
+      "valid-typeof": "warn",
+  
+      "indent": ["error", 2],
+  
+      "react/display-name": ["off", {"ignoreTranspilerName": false}],
+      "react/jsx-closing-bracket-location": ["warn", "tag-aligned"],
+      "react/jsx-indent-props": ["error", 2],
+      "react/prop-types": ["warn", { "ignore": [ "tintColor" ] }],
+  
+      // React-native
+      "react-native/no-unused-styles": 0,
+      "react-native/split-platform-components": 0,
+      "react-native/no-inline-styles": 0,
+      "react-native/no-color-literals": 0
+    }
+  }

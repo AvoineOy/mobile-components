@@ -59,6 +59,105 @@ let defaultStyles = {
     TextInput: {
       width: 300
     }
+  },
+
+  NewsList: {
+    view: {
+      paddingTop: 20,
+      backgroundColor: "#0fa"
+    },
+
+    image: {
+      flex: 1,
+      width: null,
+      height: null,
+      maxWidth: 500,
+      backgroundColor: 'lightgray',
+      paddingBottom: 2
+    },
+
+    imageMissingText: {
+      padding: 30,
+      textAlign: 'center',
+      backgroundColor: 'gray'
+    },
+
+    NewsItem: {
+      view: {
+        flex: 1,
+        paddingTop: 5,
+        paddingBottom: 0,
+        backgroundColor: "lightgray"
+      },
+      imageContainer: {
+        backgroundColor: 'transparent',
+        paddingBottom: 2
+      },
+      image: {
+        flex: 1,
+        minHeight: 200,
+        width: null,
+        height: null,
+        maxWidth: 500
+      },
+      ingress: {
+        paddingTop: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        fontWeight: 'bold',
+        backgroundColor: 'white'
+      },
+      summary: {
+        paddingTop: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 40,
+        backgroundColor: 'white'
+      }
+    },
+
+    NewsItemScreen: {
+      view: {
+        flex: 1,
+        paddingTop: 5,
+        paddingBottom: 0,
+        backgroundColor: "lightgray"
+      },
+      imageContainer: {
+        backgroundColor: 'transparent',
+        paddingBottom: 2
+      },
+      image: {
+        flex: 1,
+        minHeight: 10,
+        width: null,
+        height: null,
+        maxWidth: 500
+      },
+      title: {
+        paddingTop: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        fontSize: 20
+      },
+      ingress: {
+        paddingTop: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 20,
+        backgroundColor: 'white',
+        fontSize: 16,
+        fontWeight: "bold"
+      },
+      body: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 40,
+        backgroundColor: 'white'
+      }
+    }
   }
 };
 
