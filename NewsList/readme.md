@@ -1,7 +1,20 @@
 
 # module-components::NewsList Components API
 
-This document contains API description for
+## Usage
+
+`import { NewsList } from '@avoine/mobile-components'`
+
+or
+
+`import { defaultStyles, NewsList } from '@avoine/mobile-components'`
+
+or
+
+`import { NewsItemScreen } from '@avoine/mobile-components'`
+
+
+## Components
 
 - [`<NewsList />`](#NewsList)
 - [`<NewsItem />`](#NewsItem)
@@ -40,6 +53,8 @@ An array of objects with following properties:
 ### Examples
 
 ```
+import { defaultStyles, NewsList } from '@avoine/mobile-components'
+
 const newsItems = [
   {
     id: '2',
@@ -69,6 +84,8 @@ const newsItems = [
 
 <NewsList
   items={newsItems}
+  style={defaultStyles}
+  navigation={navigation}
 >
 ```
 
