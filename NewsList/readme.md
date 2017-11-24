@@ -1,5 +1,5 @@
 
-# module-components::NewsList Components API
+# Mobile Components: NewsList API
 
 ## Usage
 
