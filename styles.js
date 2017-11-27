@@ -90,18 +90,25 @@ let defaultStyles = {
         textAlign: 'center',
         backgroundColor: 'gray'
       },
-      title: {
+      textContent: {
         paddingTop: 10,
+        paddingBottom: 15,
         paddingLeft: 20,
         paddingRight: 20,
+        backgroundColor: 'white'
+      },
+      title: {
+        paddingTop: 10,
         fontWeight: 'bold',
         backgroundColor: 'white'
       },
+      date: {
+        color: '#6d6d6d',
+        fontSize: 12,
+        fontWeight: 'normal',
+      },
       ingress: {
         paddingTop: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingBottom: 40,
         backgroundColor: 'white'
       }
     },

@@ -31,6 +31,7 @@ or
 | `style` | Object | | Styles for `<NewsList />` and childs. |
 | `map` | Object | | Map for mapping property names in `items` to property names required by `<NewsItem />`.<br><br>Example:<br>To map `item.img` to `item.image`, map would be `{image: 'img'}`.
 | `navigation` | Object | | Navigation object. This is used for opening `<NewsItemScreen />` for displaying single items.
+| `convertDate` | function | Function for converting date to timestamp with milliseconds (= unix timestamp * 1000) |
 
 ### Types
 

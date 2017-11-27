@@ -9,8 +9,12 @@ import {
   WebView
 } from 'react-native'
 import { PropTypes } from 'prop-types'
+import HTML from 'react-native-render-html'
 
 class NewsItemScreen extends React.Component {
+
+  _isMounted = false
+
   constructor(props) {
     super(props);
 
@@ -19,7 +23,7 @@ class NewsItemScreen extends React.Component {
 
     this.item = item;
     this.style = style;
-
+    
     this.state = {
       imgWidth: 0,
       imgHeight: 0,
@@ -28,20 +32,39 @@ class NewsItemScreen extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true
+
+    /**
+     * Resize the main image
+     */
     Image.getSize(this.item.image, (width, height) => {
       // calculate image width and height 
       const screenWidth = Dimensions.get('window').width
       const scaleFactor = width / screenWidth
       const imageHeight = height / scaleFactor
-      this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
 
-      console.log(screenWidth, imageHeight);
+      if (this._isMounted) {
+        this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
+      }
     })
+  }
+
+  /**
+   * Currently there is no way to cancel Promise, so we need to handle
+   * mounting state by hand.
+   */
+  componentWillUnmount() {
+    this._isMounted = false
   }
 
   render() {
     
     const { item, style } = this;
+
+    /**
+     * Remove all width|height="[number]" to enable usage of imagesMaxWidth on HTML
+     */
+    let body = item.body.replace(/ (width|height)="[0-9]+"/g, "")
 
     return (
       <ScrollView style={{flex: 1}}>
@@ -67,7 +90,12 @@ class NewsItemScreen extends React.Component {
           }
           <Text style={style.NewsList.NewsItemScreen.title}>{item.title}</Text>
           <Text style={style.NewsList.NewsItemScreen.ingress}>{item.summary}</Text>
-          <WebView
+          <HTML
+            html={body}
+            containerStyle={style.NewsList.NewsItemScreen.body}
+            imagesMaxWidth={Dimensions.get("window").width}
+          />
+          {/* <WebView
             style={Object.assign({}, style.NewsList.NewsItemScreen.body, {
               height: 2000
             })}
@@ -75,7 +103,7 @@ class NewsItemScreen extends React.Component {
             source={{
               html: item.body
             }}
-          />
+          /> */}
         </View>
       </ScrollView>
     )

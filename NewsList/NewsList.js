@@ -24,6 +24,41 @@ export default class NewsList extends React.Component {
     if (props.map) {
       this.propertyMap = this.buildPropertyMap(props.map);
     }
+
+    this.initItems = this.initItems.bind(this);
+  }
+
+  initItems(inputItems, convertDate) {
+    let items = inputItems;
+
+    if (this.needToMapProperties()) {
+      items = items.map(item => this.doMapping(item)(this.propertyMap))
+    }
+
+    /**
+     * If date converter is set, convert dates to JS timestamps
+     */
+    if (convertDate) {
+      items = items.map(item => {
+        item.date = convertDate(item.date)
+        return item
+      })
+    }
+
+    /**
+     * Init items' dateString
+     */
+    items = items.map(item => {
+      item.dateString = this.renderDate(item.date);
+      return item;
+    })
+
+    /**
+     * Sort items in descending order by date
+     */
+    items = items.sort(this.sortPerDateDesc);
+
+    return items;
   }
 
   /**
@@ -62,14 +97,24 @@ export default class NewsList extends React.Component {
     }
   }
 
-  render() {
-    const { style, navigation } = this.props;
-    let { items } = this.props;
+  renderDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear()
+      + ' '
+      + date.getHours() + ':' + ("0" + date.getMinutes()).substr(-2);
+  }
 
-    if (this.needToMapProperties()) {
-      const updatedItems = items.map(item => this.doMapping(item)(this.propertyMap))
-      items = updatedItems;
-    }
+  sortPerDateDesc = (a, b) => {
+    const dateA = parseInt(a.date);
+    const dateB = parseInt(b.date);
+    if (dateA == dateB) return 0;
+    if (dateA < dateB) return 1;
+    return -1;
+  }
+
+  render() {
+    const { style, navigation, convertDate } = this.props;
+    const items = this.initItems(this.props.items, convertDate);
 
     return (
       <View style={style.NewsList.view}>
@@ -109,5 +154,6 @@ NewsList.propTypes = {
     })
   }).isRequired,
   navigation: PropTypes.object.isRequired,
-  map: PropTypes.object
+  map: PropTypes.object,
+  convertDate: PropTypes.func,
 }
