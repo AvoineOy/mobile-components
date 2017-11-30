@@ -1,43 +1,24 @@
+import _ from 'lodash'
 
-# Mobile Components: Login API
+const mainColor = '#ccc';
+const secondaryColor = '#000';
+const hilightColor = '#FDE311';
+const inactiveMainColor = '#666';
+const inactiveSecondaryColor = '#222';
 
-## Usage
+let config = {
+  storage: '@fi.avoine.mobileapp',
 
-`import { Login } from '@avoine/mobile-components'`
+  mainColor,
+  secondaryColor,
+  hilightColor,
+  inactiveMainColor,
+  inactiveSecondaryColor,
 
-or
-
-`import { defaultStyles, Login } from '@avoine/mobile-components'`
-
-
-## Components
-
-- [`<Login />`](#Login)
-
-
-## <a name="Login"></a>`<Login />` Component API
-
-### Props
-
-| Prop | Type | Default | Note |
-|---|---|---|---|
-| `config` | Object | | Configuration object. See description for [config](#config). |
-| `style` | Object | | Styles for `<Login />`. See description for [style](#style). |
-| `onLogin` | function | | Function provided with `onLogin` will be called on succesfull login. |
-
-#### <a name="config"></a>Property `config`
-
-Configuration object with object `Login`. Object `Login` needs to contain these properties:
-
-| Prop | Type | Description |
-|---|---|---|
-| `url` | String | Base url for authentication service. E.x. `https://sso.example.com` |
-| `instance` | String | Instance name for authentication service. E.x. `my_instance` |
-
-Example:
-```
-const loginConfig = {
-  Login: Login: {
+  /**
+   * Login
+  */
+  Login: {
     url: 'https://tunnistus2.avoine.fi',
     instance: 'aaa_santa',
     logo: require('./assets/batman.png'),
@@ -106,24 +87,53 @@ const loginConfig = {
       },
     },
   },
+
+  styles: {
+    Login: {
+      label: {},
+      input: {},
+      button: {},
+    },
+    navigation: {
+      headerStyle: {
+        backgroundColor: mainColor,
+      },
+      headerTitleStyle: {
+        color: secondaryColor,
+      },
+      headerTintColor: secondaryColor,
+      headerBackTitleStyle: {
+        color: secondaryColor,
+      },
+      headerLeft: {
+        outerContainer: {
+          paddingLeft: 7
+        },
+        innerContainer: {
+          width: 30,
+          height: 30,
+          borderRadius: 15,
+          paddingLeft: 6,
+          paddingTop: 5,
+          backgroundColor: secondaryColor,
+        }
+      },
+      headerRight: {
+        outerContainer: {
+          paddingRight: 5,
+          paddingTop: 5,
+        },
+        innerContainer: {}
+      },
+      tabBarOptions: {
+        inactiveTintColor: "#ccc",
+        activeTintColor: mainColor,
+        showLabel: true
+      }
+    },
+  },
 }
-```
 
-#### <a name="style"></a>Property `style`
+const buildConfig = (configObj) => _.merge({}, config, configObj)
 
-Coming soon. At the moment, please see `styles.js`
-
-### Examples
-
-```
-import { defaultStyles, Login } from '@avoine/mobile-components'
-import { appConfig } from './appConfig'
-
-...
-
-<Login
-  config={appConfig}
-  style={defaultStyles}
-  onLogin={this.onLoginSuccess}
-/>
-```
+export default buildConfig

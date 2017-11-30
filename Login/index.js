@@ -127,15 +127,18 @@ class Login extends React.Component {
   }
 
   renderLogo() {
-    return this.config.Login.logo ?
-      <Image
-        source={this.config.Login.logo}
-        style={this.style.logo}
-        resizeMode='contain'
-      />
-      :
-      null
-    ;
+
+    if (this.config.Login.logo) {
+      return (
+        <Image
+          source={this.config.Login.logo}
+          style={this.style.logo}
+          resizeMode='contain'
+        />
+      );
+    }
+    
+    return <Text>ei kuvaa</Text>;
   }
 
   /**
@@ -180,7 +183,7 @@ class Login extends React.Component {
           <TextInput
             defaultValue={ this.state.code }
             style={ [this.style.TextInput, this.style.input] }
-            placeholder="Esim. 123456"
+            placeholder={this.config.Login.usePlaceholder}
             placeholderTextColor={this.config.inactiveMainColor}
             onChangeText={code => this.setState({ code })}
             keyboardType="numeric"
@@ -213,7 +216,7 @@ class Login extends React.Component {
         </Text>
         <TextInput
           style={[this.style.TextInput, this.style.input]}
-          placeholder="Syötä puhelin tai email"
+          placeholder={this.config.Login.codePlaceholder}
           placeholderTextColor={this.config.inactiveMainColor}
           onChangeText={phoneNumber => this.setState({phoneNumber})}
           defaultValue={this.state.phoneNumber}
