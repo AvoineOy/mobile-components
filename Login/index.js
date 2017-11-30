@@ -4,12 +4,14 @@ import {
   processColor,
   View,
   TextInput,
-  Button,
-  Alert
+  Alert,
+  Image,
+  ActivityIndicator
 } from 'react-native';
 import PropTypes from 'prop-types';
 import AvoineSSOClient from '@avoine/sso-client';
 import defaultStyle from '../styles'
+import { Button } from 'react-native-elements'
 
 /**
  * Component <Login/>
@@ -46,12 +48,13 @@ class Login extends React.Component {
       showUseCode: false,
     };
 
+    this.config = props.config;
     this.ssoUrl = props.config.Login.url || undefined;
     this.ssoInstance = props.config.Login.instance || undefined;
-
-    //this.render = this.render.bind(this);
+    
     this.requestCode = this.requestCode.bind(this);
     this.useCode = this.useCode.bind(this);
+    this.renderLogo = this.renderLogo.bind(this);
   }
 
   componentWillMount() {
@@ -71,6 +74,7 @@ class Login extends React.Component {
     this.setState({
       isLoggingIn: true
     });
+
     console.log('Request code for', this.state.phoneNumber, ssoUrl, ssoInstance);
 
     this.ssoClient.requestCode(ssoUrl, ssoInstance, this.state.phoneNumber)
@@ -122,6 +126,18 @@ class Login extends React.Component {
       });
   }
 
+  renderLogo() {
+    return this.config.Login.logo ?
+      <Image
+        source={this.config.Login.logo}
+        style={this.style.logo}
+        resizeMode='contain'
+      />
+      :
+      null
+    ;
+  }
+
   /**
    * Render component
    * 
@@ -137,36 +153,49 @@ class Login extends React.Component {
        * If state isLoggingIn is set, show loader
        */
       return (
-        <Text
-          style={[this.style.Text, this.style.AvoineSSOLogin.Text]}
-        >
-          Odota hetki, tunnistautuminen käynnissä...
-        </Text>
+        <View style={[defaultStyle.Login.outerContainer, this.style.outerContainer]}>
+          
+          {this.renderLogo()}
+          
+          <View style={{paddingTop: 20}}>
+            <ActivityIndicator
+              size="large"
+              color="gray"
+            />
+          </View>
+        </View>
       );
     } else if (this.state.showUseCode) {
       /**
        * If state showUseCode is set, let user enter the code
        */
       return (
-        <View>
-          <Text
-            style={[this.style.Text, this.style.AvoineSSOLogin.Text]}
-          >
-            Syötä koodi
+        <View style={[defaultStyle.Login.outerContainer, this.style.outerContainer]}>
+
+          {this.renderLogo()}
+
+          <Text style={[defaultStyle.Text, this.style.label]}>
+            {this.config.Login.useText || 'Syötä koodi'}
           </Text>
           <TextInput
             defaultValue={ this.state.code }
-            style={ [this.style.TextInput, this.style.AvoineSSOLogin.TextInput] }
+            style={ [this.style.TextInput, this.style.input] }
+            placeholder="Esim. 123456"
+            placeholderTextColor={this.config.inactiveMainColor}
             onChangeText={code => this.setState({ code })}
             keyboardType="numeric"
             returnKeyType="go"
-            returnKeyLabel="Kirjaudu"
+            returnKeyLabel="Tunnistaudu"
           />
-          <Button
-            color={this.style.AvoineSSOLogin.Button.color || this.style.Button.color}
-            title="Kirjaudu sisään"
-            onPress={() => this.useCode(this.ssoUrl, this.ssoInstance)}
-          />
+          <View style={this.style.buttonContainer}>
+            <Button
+              buttonStyle={this.style.buttonStyle}
+              textStyle={this.style.buttonTextStyle}
+              title={this.config.Login.useButtonText || "TUNNISTAUDU"}
+              rightIcon={this.config.Login.useButtonIcon}
+              onPress={() => this.useCode(this.ssoUrl, this.ssoInstance)}
+            />
+          </View>
         </View>
       );
     }
@@ -175,25 +204,32 @@ class Login extends React.Component {
      * Initial view: let user input identification (e.g. phone number)
      */
     return (
-      <View>
-        <Text
-          style={[this.style.Text, this.style.AvoineSSOLogin.Text]}
-        >
-          Syötä puhelinnumerosi
+      <View style={[defaultStyle.Login.outerContainer, this.style.outerContainer]}>
+        
+        {this.renderLogo()}
+          
+        <Text style={[defaultStyle.Text, this.style.label]}>
+          {this.config.Login.codeText || 'Syötä puhelinnumerosi tai sähköpostiosoitteesi'}
         </Text>
         <TextInput
-          style={[this.style.TextInput, this.style.AvoineSSOLogin.TextInput]}
+          style={[this.style.TextInput, this.style.input]}
+          placeholder="Syötä puhelin tai email"
+          placeholderTextColor={this.config.inactiveMainColor}
           onChangeText={phoneNumber => this.setState({phoneNumber})}
           defaultValue={this.state.phoneNumber}
-          keyboardType="phone-pad"
+          keyboardType="default"
           returnKeyType="go"
           returnKeyLabel="Jatka"
         />
-        <Button
-          color={this.style.AvoineSSOLogin.Button.color || this.style.Button.color}
-          title="Pyydä koodi"
-          onPress={() => this.requestCode(this.ssoUrl, this.ssoInstance)}
-        />
+        <View style={this.style.buttonContainer}>
+          <Button
+            buttonStyle={this.style.buttonStyle}
+            textStyle={this.style.buttonTextStyle}
+            title={this.config.Login.codeButtonText}
+            rightIcon={this.config.Login.codeButtonIcon}
+            onPress={() => this.requestCode(this.ssoUrl, this.ssoInstance)}
+          />
+        </View>
       </View>
     );
   }
