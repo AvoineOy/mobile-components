@@ -10,36 +10,39 @@ export default class NewsItem extends React.Component {
   openNewsItem(item) {
     this.props.navigation.navigate('NewsItem', {
       item: item,
-      style: this.props.style
+      appConfig: this.props.appConfig
     })
   }
 
   render() {
-    const { item, style } = this.props;
+    const { item, appConfig } = this.props;
 
     return (
       <TouchableHighlight onPress={() => this.openNewsItem(item)}>
-        <View style={style.NewsList.NewsItem.view}>
+        <View style={appConfig.NewsList.style.NewsItem.container}>
           {
             item.thumbnail ?
-              <View style={style.NewsList.NewsItem.imageContainer}>
+              <View style={appConfig.NewsList.style.NewsItem.imageContainer}>
                 <Image
                   source={{uri: item.thumbnail}}
-                  style={style.NewsList.NewsItem.image}
+                  style={appConfig.NewsList.style.NewsItem.image}
                   resizeMode="cover"
                 />
               </View>
               :
-              <View style={style.NewsList.NewsItem.imageMissingText}>
+              <View style={appConfig.NewsList.style.NewsItem.imageMissingText}>
                 <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
               </View>
           }
           <View
-            style={style.NewsList.NewsItem.textContent}
+            style={appConfig.NewsList.style.NewsItem.textContent}
           >
-            <Text style={style.NewsList.NewsItem.date}>{item.dateString}</Text>
-            <Text style={style.NewsList.NewsItem.title}>{item.title}</Text>
-            <Text style={style.NewsList.NewsItem.ingress}>{item.summary}</Text>
+            {appConfig.NewsList.showDate || appConfig.NewsList.showTime ? 
+              <Text style={appConfig.NewsList.style.NewsItem.date}>{item.dateString}</Text>
+              : null
+            }
+            <Text style={appConfig.NewsList.style.NewsItem.title}>{item.title}</Text>
+            <Text style={appConfig.NewsList.style.NewsItem.ingress}>{item.summary}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -49,6 +52,6 @@ export default class NewsItem extends React.Component {
 
 NewsItem.propTypes = {
   item: PropTypes.object.isRequired,
-  style: PropTypes.object.isRequired,
+  appConfig: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired
 }

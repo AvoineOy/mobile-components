@@ -28,7 +28,7 @@ export default class NewsList extends React.Component {
     this.initItems = this.initItems.bind(this);
   }
 
-  initItems(inputItems, convertDate) {
+  initItems(inputItems, convertDate, appConfig) {
     let items = inputItems;
 
     if (this.needToMapProperties()) {
@@ -49,7 +49,7 @@ export default class NewsList extends React.Component {
      * Init items' dateString
      */
     items = items.map(item => {
-      item.dateString = this.renderDate(item.date);
+      item.dateString = this.renderDate(item.date, appConfig);
       return item;
     })
 
@@ -97,11 +97,13 @@ export default class NewsList extends React.Component {
     }
   }
 
-  renderDate = (timestamp) => {
+  renderDate = (timestamp, appConfig) => {
     const date = new Date(timestamp);
-    return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear()
-      + ' '
-      + date.getHours() + ':' + ("0" + date.getMinutes()).substr(-2);
+
+    let output = appConfig.NewsList.showDate ? date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear() : '';
+    output += appConfig.NewsList.showTime ? ' ' + date.getHours() + ':' + ("0" + date.getMinutes()).substr(-2) : ''
+
+    return output
   }
 
   sortPerDateDesc = (a, b) => {
@@ -113,16 +115,16 @@ export default class NewsList extends React.Component {
   }
 
   render() {
-    const { style, navigation, convertDate } = this.props;
-    const items = this.initItems(this.props.items, convertDate);
+    const { appConfig, navigation, convertDate } = this.props;
+    const items = this.initItems(this.props.items, convertDate, appConfig);
 
     return (
-      <View style={style.NewsList.view}>
+      <View style={appConfig.NewsList.style.NewsList.container}>
         {items.map((item) =>
           <NewsItem
             key={item.id}
             item={item}
-            style={style}
+            appConfig={appConfig}
             navigation={navigation}
           />)}
       </View>
@@ -132,27 +134,7 @@ export default class NewsList extends React.Component {
 
 NewsList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  style: PropTypes.shape({
-    NewsList: PropTypes.shape({
-      NewsItem: PropTypes.shape({
-        view: PropTypes.object.isRequired,
-        imageContainer: PropTypes.object.isRequired,
-        image: PropTypes.object.isRequired,
-        imageMissingText: PropTypes.object.isRequired,
-        title: PropTypes.object.isRequired,
-        ingress: PropTypes.object.isRequired,
-      }).isRequired,
-      NewsItemScreen: PropTypes.shape({
-        view: PropTypes.object.isRequired,
-        imageContainer: PropTypes.object.isRequired,
-        image: PropTypes.object.isRequired,
-        imageMissingText: PropTypes.object.isRequired,
-        title: PropTypes.object.isRequired,
-        ingress: PropTypes.object.isRequired,
-        body: PropTypes.object.isRequired,
-      }).isRequired
-    })
-  }).isRequired,
+  appConfig: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   map: PropTypes.object,
   convertDate: PropTypes.func,

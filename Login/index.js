@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import AvoineSSOClient from '@avoine/sso-client';
-import defaultStyle from '../styles'
 import { Button } from 'react-native-elements'
 
 /**
@@ -38,9 +37,6 @@ class Login extends React.Component {
    */
   constructor(props) {
     super(props);
-
-    let style = Object.assign({}, defaultStyle, props.style || {});
-    this.style = style;
 
     this.state = {
       phoneNumber: '',
@@ -132,7 +128,7 @@ class Login extends React.Component {
       return (
         <Image
           source={this.config.Login.logo}
-          style={this.style.logo}
+          style={this.config.Login.style.logo}
           resizeMode='contain'
         />
       );
@@ -156,7 +152,7 @@ class Login extends React.Component {
        * If state isLoggingIn is set, show loader
        */
       return (
-        <View style={[defaultStyle.Login.outerContainer, this.style.outerContainer]}>
+        <View style={this.config.Login.style.outerContainer}>
           
           {this.renderLogo()}
           
@@ -173,16 +169,16 @@ class Login extends React.Component {
        * If state showUseCode is set, let user enter the code
        */
       return (
-        <View style={[defaultStyle.Login.outerContainer, this.style.outerContainer]}>
+        <View style={this.config.Login.style.outerContainer}>
 
           {this.renderLogo()}
 
-          <Text style={[defaultStyle.Text, this.style.label]}>
+          <Text style={this.config.Login.style.label}>
             {this.config.Login.useText || 'Syötä koodi'}
           </Text>
           <TextInput
-            defaultValue={ this.state.code }
-            style={ [this.style.TextInput, this.style.input] }
+            defaultValue={this.state.code}
+            style={this.config.Login.style.input}
             placeholder={this.config.Login.usePlaceholder}
             placeholderTextColor={this.config.inactiveMainColor}
             onChangeText={code => this.setState({ code })}
@@ -190,9 +186,9 @@ class Login extends React.Component {
             returnKeyType="go"
             returnKeyLabel="Tunnistaudu"
           />
-          <View style={this.style.buttonContainer}>
+          <View style={this.config.Login.style.buttonContainer}>
             <Button
-              buttonStyle={this.style.buttonStyle}
+              buttonStyle={this.config.Login.style.buttonStyle}
               textStyle={this.style.buttonTextStyle}
               title={this.config.Login.useButtonText || "TUNNISTAUDU"}
               rightIcon={this.config.Login.useButtonIcon}
@@ -207,15 +203,15 @@ class Login extends React.Component {
      * Initial view: let user input identification (e.g. phone number)
      */
     return (
-      <View style={[defaultStyle.Login.outerContainer, this.style.outerContainer]}>
+      <View style={this.config.Login.style.outerContainer}>
         
         {this.renderLogo()}
           
-        <Text style={[defaultStyle.Text, this.style.label]}>
+        <Text style={this.config.Login.style.label}>
           {this.config.Login.codeText || 'Syötä puhelinnumerosi tai sähköpostiosoitteesi'}
         </Text>
         <TextInput
-          style={[this.style.TextInput, this.style.input]}
+          style={this.config.Login.style.input}
           placeholder={this.config.Login.codePlaceholder}
           placeholderTextColor={this.config.inactiveMainColor}
           onChangeText={phoneNumber => this.setState({phoneNumber})}
@@ -224,10 +220,10 @@ class Login extends React.Component {
           returnKeyType="go"
           returnKeyLabel="Jatka"
         />
-        <View style={this.style.buttonContainer}>
+        <View style={this.config.Login.style.buttonContainer}>
           <Button
-            buttonStyle={this.style.buttonStyle}
-            textStyle={this.style.buttonTextStyle}
+            buttonStyle={this.config.Login.style.buttonStyle}
+            textStyle={this.config.Login.style.buttonTextStyle}
             title={this.config.Login.codeButtonText}
             rightIcon={this.config.Login.codeButtonIcon}
             onPress={() => this.requestCode(this.ssoUrl, this.ssoInstance)}

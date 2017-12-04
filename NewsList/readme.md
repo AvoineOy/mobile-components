@@ -5,11 +5,7 @@
 
 `import { NewsList } from '@avoine/mobile-components'`
 
-or
-
-`import { defaultStyles, NewsList } from '@avoine/mobile-components'`
-
-or
+and/or
 
 `import { NewsItemScreen } from '@avoine/mobile-components'`
 
@@ -28,7 +24,7 @@ or
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | `items` | Array of Objects | | Items to be viewed in `<NewsItem />` components. See [NewsItem](#NewsItem). |
-| `style` | Object | | Styles for `<NewsList />` and childs. |
+| `appConfig` | Object | | appConfig created with [`buildConfig()`](../Config/?buildConfig). |
 | `map` | Object | | Map for mapping property names in `items` to property names required by `<NewsItem />`.<br><br>Example:<br>To map `item.img` to `item.image`, map would be `{image: 'img'}`.
 | `navigation` | Object | | Navigation object. This is used for opening `<NewsItemScreen />` for displaying single items.
 | `convertDate` | function | Function for converting date to timestamp with milliseconds (= unix timestamp * 1000) |
@@ -54,7 +50,8 @@ An array of objects with following properties:
 ### Examples
 
 ```
-import { defaultStyles, NewsList } from '@avoine/mobile-components'
+import { NewsList } from '@avoine/mobile-components'
+import appConfig from '../appConfig'
 
 const newsItems = [
   {
@@ -85,7 +82,7 @@ const newsItems = [
 
 <NewsList
   items={newsItems}
-  style={defaultStyles}
+  appConfig={appConfig}
   navigation={navigation}
 >
 ```

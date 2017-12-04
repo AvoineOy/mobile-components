@@ -19,10 +19,10 @@ class NewsItemScreen extends React.Component {
     super(props);
 
     const { state } = this.props.navigation;
-    const { item, style } = state.params;
+    const { item, appConfig } = state.params;
 
     this.item = item;
-    this.style = style;
+    this.appConfig = appConfig;
     
     this.state = {
       imgWidth: 0,
@@ -32,7 +32,7 @@ class NewsItemScreen extends React.Component {
   }
 
   componentDidMount() {
-    this._isMounted = true
+    this._isMounted = true  
 
     /**
      * Resize the main image
@@ -59,7 +59,7 @@ class NewsItemScreen extends React.Component {
 
   render() {
     
-    const { item, style } = this;
+    const { item, appConfig } = this;
 
     /**
      * Remove all width|height="[number]" to enable usage of imagesMaxWidth on HTML
@@ -67,44 +67,35 @@ class NewsItemScreen extends React.Component {
     let body = item.body.replace(/ (width|height)="[0-9]+"/g, "")
 
     return (
-      <ScrollView style={{flex: 1}}>
-        <View style={style.NewsList.NewsItemScreen.view}>
-          {
-            item.image ?
-              <View style={style.NewsList.NewsItemScreen.imageContainer}>
-                <Image
-                  source={{uri: item.image}}
-                  style={Object.assign({}, style.NewsList.NewsItemScreen.image, 
-                    {
-                      width: this.state.imgWidth,
-                      height: this.state.imgHeight
-                    }
-                  )}
-                  resizeMode="cover"
-                />
-              </View>
-              :
-              <View style={style.NewsList.NewsItemScreen.imageMissingText}>
-                <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
-              </View>
-          }
-          <Text style={style.NewsList.NewsItemScreen.title}>{item.title}</Text>
-          <Text style={style.NewsList.NewsItemScreen.ingress}>{item.summary}</Text>
-          <HTML
-            html={body}
-            containerStyle={style.NewsList.NewsItemScreen.body}
-            imagesMaxWidth={Dimensions.get("window").width}
-          />
-          {/* <WebView
-            style={Object.assign({}, style.NewsList.NewsItemScreen.body, {
-              height: 2000
-            })}
-            scrollEnabled={false}
-            source={{
-              html: item.body
-            }}
-          /> */}
-        </View>
+      <ScrollView style={appConfig.NewsList.style.NewsItemScreen.container}>
+        {
+          item.image ?
+            <View style={appConfig.NewsList.style.NewsItemScreen.imageContainer}>
+              <Image
+                source={{uri: item.image}}
+                style={Object.assign({}, appConfig.NewsList.style.NewsItemScreen.image, 
+                  {
+                    width: this.state.imgWidth,
+                    height: this.state.imgHeight
+                  }
+                )}
+                resizeMode="cover"
+              />
+            </View>
+            :
+            <View style={appConfig.NewsList.style.NewsItemScreen.imageMissingText}>
+              <Text style={{ textAlign: 'center' }}>Ei kuvaa</Text>
+            </View>
+        }
+        <Text style={appConfig.NewsList.style.NewsItemScreen.title}>{item.title}</Text>
+        <Text style={appConfig.NewsList.style.NewsItemScreen.ingress}>{item.summary}</Text>
+        <HTML
+          html={`<div class="NewsItemScreen">${body}</div>`}
+          tagsStyles={appConfig.NewsList.style.NewsItemScreen.tagsStyles}
+          classesStyles={appConfig.NewsList.style.NewsItemScreen.classesStyles}
+          containerStyle={appConfig.NewsList.style.NewsItemScreen.body}
+          imagesMaxWidth={Dimensions.get("window").width}
+        />
       </ScrollView>
     )
   }
@@ -115,19 +106,7 @@ NewsItemScreen.propTypes = {
     state: PropTypes.shape({
       params: PropTypes.shape({
         item: PropTypes.object.isRequired,
-        style: PropTypes.shape({
-          NewsList: PropTypes.shape({
-            NewsItemScreen: PropTypes.shape({
-              view: PropTypes.object.isRequired,
-              imageContainer: PropTypes.object.isRequired,
-              image: PropTypes.object.isRequired,
-              imageMissingText: PropTypes.object.isRequired,
-              title: PropTypes.object.isRequired,
-              ingress: PropTypes.object.isRequired,
-              body: PropTypes.object.isRequired,
-            }).isRequired
-          })
-        }).isRequired,
+        appConfig: PropTypes.object.isRequired
       })
     })
   })
