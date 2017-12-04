@@ -37,10 +37,75 @@ Configuration object with object `Login`. Object `Login` needs to contain these 
 Example:
 ```
 const loginConfig = {
-  Login: {
-    url: 'https://sso.example.com',
-    instance: 'my_instance'
-  }
+  Login: Login: {
+    url: 'https://tunnistus2.avoine.fi',
+    instance: 'aaa_santa',
+    logo: require('./assets/batman.png'),
+    codeText: 'Syötä lepakkonumerosi',
+    codePlaceholder: 'Esim. BAT-001',
+    codeButtonText: 'TILAA KOODI',
+    codeButtonIcon: {
+      name: 'arrow-right',
+      type: 'material-community',
+      size: 20,
+      color: secondaryColor
+    },
+    useText: 'Syötä koodi',
+    useButtonText: 'TUNNISTAUDU',
+    usePlaceholder: 'Esim. 123456',
+    useButtonIcon: {
+      name: 'fingerprint',
+      type: 'material',
+      size: 32,
+      color: secondaryColor
+    },
+    style: {
+      outerContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 0,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 0,
+        backgroundColor: secondaryColor,
+      },
+      logo: {
+        width: 200,
+        height: 100,
+      },
+      label: {
+        fontWeight: 'bold',
+        color: mainColor,
+        lineHeight: 26,
+        textAlign: "center",
+        width: 300
+      },
+      input: {
+        height: 70,
+        width: 300,
+        borderRadius: 10,
+        backgroundColor: secondaryColor,
+        borderColor: mainColor,
+        borderWidth: 1,
+        color: mainColor,
+      },
+      button: {
+      },
+      buttonContainer: {
+        paddingTop: 10
+      },
+      buttonStyle: {
+        backgroundColor: mainColor,
+        borderRadius: 10,
+        width: 300
+      },
+      buttonTextStyle: {
+        color: secondaryColor
+      },
+    },
+  },
 }
 ```
 
