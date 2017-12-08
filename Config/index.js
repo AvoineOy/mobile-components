@@ -274,7 +274,7 @@ const buildConfig = (
         },
         tabBarOptions: {
           activeTintColor: secondaryColor,
-          inactiveTintColor: inactiveSecondaryColor,
+          inactiveTintColor: inactiveHilightColor ,
           showLabel: true,
           style: {
             backgroundColor: hilightColor,
