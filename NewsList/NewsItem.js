@@ -45,6 +45,6 @@ export default class NewsItem extends React.Component {
 
 NewsItem.propTypes = {
   item: PropTypes.object.isRequired,
+  openNewsItem: PropTypes.func.isRequired,
   appConfig: PropTypes.object.isRequired,
-  // navigation: PropTypes.object.isRequired
 }
