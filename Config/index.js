@@ -36,8 +36,8 @@ const buildConfig = (
       url: 'https://tunnistus2.avoine.fi',
       instance: 'aaa_santa',
       logo: require('./assets/avoine-icon.png'),
-      codeText: 'Syötä tunnuksesi',
-      codePlaceholder: 'Esim. ABCD1234',
+      codeText: 'Puhelinnumerosi tai emailisi',
+      codePlaceholder: 'Esim. 040 123 4567',
       codeButtonText: 'TILAA KOODI',
       codeButtonIcon: {
         name: 'arrow-right',

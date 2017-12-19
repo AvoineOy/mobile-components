@@ -115,7 +115,7 @@ export default class NewsList extends React.Component {
   }
 
   render() {
-    const { appConfig, navigation, convertDate } = this.props;
+    const { appConfig, navigation, convertDate, openNewsItem } = this.props;
     const items = this.initItems(this.props.items, convertDate, appConfig);
 
     return (
@@ -125,7 +125,7 @@ export default class NewsList extends React.Component {
             key={item.id}
             item={item}
             appConfig={appConfig}
-            navigation={navigation}
+            openNewsItem={openNewsItem}
           />)}
       </View>
     )
@@ -135,7 +135,7 @@ export default class NewsList extends React.Component {
 NewsList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   appConfig: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired,
+  // navigation: PropTypes.object.isRequired,
   map: PropTypes.object,
   convertDate: PropTypes.func,
 }

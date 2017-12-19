@@ -7,18 +7,11 @@ export default class NewsItem extends React.Component {
     super(props);
   }
 
-  openNewsItem(item) {
-    this.props.navigation.navigate('NewsItem', {
-      item: item,
-      appConfig: this.props.appConfig
-    })
-  }
-
   render() {
-    const { item, appConfig } = this.props;
+    const { item, appConfig, openNewsItem } = this.props;
 
     return (
-      <TouchableHighlight onPress={() => this.openNewsItem(item)}>
+      <TouchableHighlight onPress={() => openNewsItem(item, appConfig)}>
         <View style={appConfig.NewsList.style.NewsItem.container}>
           {
             item.thumbnail ?
@@ -53,5 +46,5 @@ export default class NewsItem extends React.Component {
 NewsItem.propTypes = {
   item: PropTypes.object.isRequired,
   appConfig: PropTypes.object.isRequired,
-  navigation: PropTypes.object.isRequired
+  // navigation: PropTypes.object.isRequired
 }

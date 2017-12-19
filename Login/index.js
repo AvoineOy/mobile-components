@@ -114,6 +114,7 @@ class Login extends React.Component {
         this.props.onLogin(accessToken);
       })
       .catch(err => {
+        console.log(err)
         Alert.alert('Virhe', 'Koodia ei voitu vahvistaa. Yritä uudelleen.\n\n' +
           'Huom!\nKoodi on voimassa\nvain 5 minuuttia.');
         this.setState({
@@ -134,7 +135,7 @@ class Login extends React.Component {
       );
     }
     
-    return <Text>ei kuvaa</Text>;
+    return null;
   }
 
   /**
@@ -189,7 +190,7 @@ class Login extends React.Component {
           <View style={this.config.Login.style.buttonContainer}>
             <Button
               buttonStyle={this.config.Login.style.buttonStyle}
-              textStyle={this.style.buttonTextStyle}
+              textStyle={this.config.Login.style.buttonTextStyle}
               title={this.config.Login.useButtonText || "TUNNISTAUDU"}
               rightIcon={this.config.Login.useButtonIcon}
               onPress={() => this.useCode(this.ssoUrl, this.ssoInstance)}
