@@ -1,6 +1,6 @@
 {
   "name": "@avoine/mobile-components",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Collection of React Native components",
   "main": "index.js",
   "scripts": {
