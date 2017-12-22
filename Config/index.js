@@ -28,6 +28,17 @@ const buildConfig = (
     statusBarHidden,
     statusBarBackgroundColor,
     statusBarStyle,
+
+    Api: {
+      url: 'https://santa.senseapi.io',
+      urlMe: 'https://santa.senseapi.io/v1/me',
+
+      // In minutes.
+      meValidityInMinutesSoft: 30,
+
+      // In minutes. 1440 minutes = 24 hours = 1 day = 1/365 year.
+      meValidityInMinutesHard: 1440,
+    },
   
     /**
      * Login
